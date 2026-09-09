@@ -1,0 +1,17 @@
+{
+  "name": "angelica-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Site vitrine da Angelica, com painel de edição via API segura (Express + Neon Postgres), hospedado no Render.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

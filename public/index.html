@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angelica</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand-mark header-logo" href="#" aria-label="Angelica">
+      <svg viewBox="0 0 260 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Angelica">
+        <circle cx="36" cy="36" r="28" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="36" cy="36" r="23" fill="none" stroke="currentColor" stroke-width="0.6"/>
+        <path d="M36,8 C28,12 19,20 14,31" fill="none" stroke="currentColor" stroke-width="0.8"/>
+        <path d="M36,8 C44,12 53,20 58,31" fill="none" stroke="currentColor" stroke-width="0.8"/>
+        <circle cx="36" cy="6" r="1.6" fill="currentColor"/>
+        <text x="36" y="47" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="600" font-size="34" fill="currentColor">A</text>
+        <text x="84" y="35" font-family="'Cormorant Garamond', serif" font-weight="600" font-size="27" letter-spacing="5" fill="currentColor">ANGELICA</text>
+        <line x1="85" y1="45" x2="248" y2="45" stroke="currentColor" stroke-width="0.8"/>
+        <text x="84" y="59" font-family="'Poppins', sans-serif" font-size="9" letter-spacing="4" fill="currentColor">PERFUMES &amp; BIJUTERIAS</text>
+      </svg>
+    </a>
+    <div class="header-actions">
+      <a class="header-cta" href="#catalogo">Ver catálogo</a>
+      <button id="gear-btn" class="gear-btn" aria-label="Área da loja" title="Área da loja">
+        <svg viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <rect x="14.5" y="0.8" width="3" height="4.6" rx="1.2" fill="currentColor" stroke="none"/>
+          <rect x="14.5" y="0.8" width="3" height="4.6" rx="1.2" fill="currentColor" stroke="none" transform="rotate(45 16 16)"/>
+          <rect x="14.5" y="0.8" width="3" height="4.6" rx="1.2" fill="currentColor" stroke="none" transform="rotate(90 16 16)"/>
+          <rect x="14.5" y="0.8" width="3" height="4.6" rx="1.2" fill="currentColor" stroke="none" transform="rotate(135 16 16)"/>
+          <rect x="14.5" y="0.8" width="3" height="4.6" rx="1.2" fill="currentColor" stroke="none" transform="rotate(180 16 16)"/>
+          <rect x="14.5" y="0.8" width="3" height="4.6" rx="1.2" fill="currentColor" stroke="none" transform="rotate(225 16 16)"/>
+          <rect x="14.5" y="0.8" width="3" height="4.6" rx="1.2" fill="currentColor" stroke="none" transform="rotate(270 16 16)"/>
+          <rect x="14.5" y="0.8" width="3" height="4.6" rx="1.2" fill="currentColor" stroke="none" transform="rotate(315 16 16)"/>
+          <circle cx="16" cy="16" r="8.7"/>
+          <circle cx="11.8" cy="16" r="1.15" fill="currentColor" stroke="none"/>
+          <circle cx="16" cy="16" r="1.15" fill="currentColor" stroke="none"/>
+          <circle cx="20.2" cy="16" r="1.15" fill="currentColor" stroke="none"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="edit-bar" class="edit-bar" hidden>
+  <span>✏️ Modo edição ativado</span>
+  <div class="edit-bar-actions">
+    <button id="open-settings-btn" class="link-btn light">Configurações</button>
+    <button id="exit-edit-btn" class="link-btn light">Sair</button>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <p class="hero-eyebrow">Loja autoral</p>
+    <h1 class="hero-title">Angelica</h1>
+    <p class="hero-subtitle">Perfumes e bijuterias que contam a sua história</p>
+    <a class="hero-button" href="#catalogo">Explorar coleção</a>
+  </div>
+</section>
+
+<main class="container" id="catalogo">
+
+  <section class="section-heading">
+    <h2>Nossa coleção</h2>
+    <p>Peças escolhidas com carinho, para cada momento e personalidade</p>
+  </section>
+
+  <p id="status-message" class="status-message" hidden></p>
+
+  <section class="filters">
+    <input type="text" id="search" placeholder="Buscar produto...">
+    <select id="category-filter">
+      <option value="Todos">Todas as categorias</option>
+    </select>
+  </section>
+
+  <section id="catalog" class="catalog"></section>
+
+  <p id="empty-message" class="empty-message" hidden>Nenhum produto encontrado.</p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span class="brand-mark footer-logo" aria-label="Angelica">
+      <svg viewBox="0 0 260 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Angelica">
+        <circle cx="36" cy="36" r="28" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="36" cy="36" r="23" fill="none" stroke="currentColor" stroke-width="0.6"/>
+        <path d="M36,8 C28,12 19,20 14,31" fill="none" stroke="currentColor" stroke-width="0.8"/>
+        <path d="M36,8 C44,12 53,20 58,31" fill="none" stroke="currentColor" stroke-width="0.8"/>
+        <circle cx="36" cy="6" r="1.6" fill="currentColor"/>
+        <text x="36" y="47" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="600" font-size="34" fill="currentColor">A</text>
+        <text x="84" y="35" font-family="'Cormorant Garamond', serif" font-weight="600" font-size="27" letter-spacing="5" fill="currentColor">ANGELICA</text>
+        <line x1="85" y1="45" x2="248" y2="45" stroke="currentColor" stroke-width="0.8"/>
+        <text x="84" y="59" font-family="'Poppins', sans-serif" font-size="9" letter-spacing="4" fill="currentColor">PERFUMES &amp; BIJUTERIAS</text>
+      </svg>
+    </span>
+    <p>Fale conosco pelo WhatsApp: <a id="whatsapp-link" href="#" target="_blank" rel="noopener">clique aqui</a></p>
+    <p class="copyright">&copy; <span id="year"></span> Angelica. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- Modal: senha de 4 números -->
+<div id="pin-modal" class="modal-overlay" hidden>
+  <div class="modal-card modal-small">
+    <button class="modal-close" data-close="pin-modal" aria-label="Fechar">&times;</button>
+    <h2>Área da loja</h2>
+    <p class="muted">Digite a senha de 4 números para editar os produtos.</p>
+    <form id="pin-form">
+      <input type="password" id="pin-input" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" class="pin-input" placeholder="••••">
+      <button type="submit" class="hero-button">Entrar</button>
+      <p id="pin-error" class="form-error" hidden></p>
+    </form>
+  </div>
+</div>
+
+<!-- Modal: adicionar / editar produto -->
+<div id="product-modal" class="modal-overlay" hidden>
+  <div class="modal-card">
+    <button class="modal-close" data-close="product-modal" aria-label="Fechar">&times;</button>
+    <h2 id="form-title">Adicionar produto</h2>
+    <form id="product-form">
+      <label>
+        Nome do produto
+        <input type="text" id="field-name" required>
+      </label>
+      <label>
+        Categoria
+        <input type="text" id="field-category" placeholder="Ex: Perfume Feminino, Bijuteria, Anel..." required>
+      </label>
+      <div class="form-row">
+        <label>
+          Preço (R$)
+          <input type="text" id="field-price" placeholder="Ex: 89,90" required>
+        </label>
+        <label>
+          Volume / medida (opcional)
+          <input type="text" id="field-volume" placeholder="Ex: 50ml">
+        </label>
+      </div>
+      <label>
+        Descrição
+        <textarea id="field-description" rows="3" required></textarea>
+      </label>
+
+      <label class="photos-label">Fotos</label>
+      <div id="photos-grid" class="photos-grid">
+        <button type="button" id="add-photo-btn" class="add-photo-tile" aria-label="Adicionar foto">
+          <span>+</span>
+          <small>Adicionar foto</small>
+        </button>
+      </div>
+      <input type="file" id="photo-input" accept="image/*" multiple hidden>
+      <p id="upload-feedback" class="form-feedback" hidden></p>
+
+      <div class="form-actions">
+        <button type="submit" class="hero-button" id="submit-btn">Adicionar produto</button>
+        <button type="button" id="delete-product-btn" class="link-btn danger" hidden>Excluir produto</button>
+      </div>
+      <p id="form-error" class="form-error" hidden></p>
+    </form>
+  </div>
+</div>
+
+<!-- Modal: configurações -->
+<div id="settings-modal" class="modal-overlay" hidden>
+  <div class="modal-card modal-small">
+    <button class="modal-close" data-close="settings-modal" aria-label="Fechar">&times;</button>
+    <h2>Configurações da loja</h2>
+    <label class="inline-field">
+      Número de WhatsApp (com DDI e DDD, só números)
+      <input type="text" id="settings-whatsapp" placeholder="Ex: 5511999998888">
+    </label>
+    <button id="save-whatsapp-btn" class="hero-button small">Salvar número</button>
+    <p id="settings-feedback" class="form-feedback" hidden></p>
+
+    <hr class="modal-divider">
+
+    <label class="inline-field">
+      Trocar senha de 4 números
+      <input type="password" id="settings-new-pin" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="••••">
+    </label>
+    <button id="save-pin-btn" class="hero-button small">Salvar nova senha</button>
+    <p id="pin-feedback" class="form-feedback" hidden></p>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

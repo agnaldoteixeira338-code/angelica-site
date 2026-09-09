@@ -1,0 +1,16 @@
+# Blueprint do Render — descreve o serviço para facilitar a criação.
+# Ao conectar o repositório no Render, ele detecta este arquivo
+# automaticamente (ou os mesmos valores podem ser preenchidos manualmente
+# na tela de criação do serviço).
+services:
+  - type: web
+    name: angelica-site
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
