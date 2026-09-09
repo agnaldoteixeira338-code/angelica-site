@@ -50,13 +50,22 @@ const cloudinaryReady = Boolean(cloudinaryConfig.cloudName && cloudinaryConfig.u
    Sessão (token) e chamadas à API
    ========================================================================== */
 
+// Guarda o token em memória (sempre funciona, dura enquanto a página está
+// aberta) e também tenta salvar no localStorage (para continuar logado
+// depois de fechar/reabrir a aba) — sem depender só do localStorage, que
+// alguns navegadores/extensões podem bloquear silenciosamente.
+let memoryToken = null;
+
 function getToken() {
+  if (memoryToken) return memoryToken;
   try { return localStorage.getItem(TOKEN_STORAGE_KEY); } catch { return null; }
 }
 function setToken(token) {
+  memoryToken = token;
   try { localStorage.setItem(TOKEN_STORAGE_KEY, token); } catch { /* navegador pode bloquear */ }
 }
 function clearToken() {
+  memoryToken = null;
   try { localStorage.removeItem(TOKEN_STORAGE_KEY); } catch { /* ignore */ }
 }
 
