@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico</title>
+<style>
+  body { font-family: monospace; font-size: 16px; padding: 1.5rem; max-width: 700px; margin: 0 auto; background: #fff; color: #222; }
+  h1 { font-size: 1.3rem; }
+  .line { padding: 0.6rem 0.8rem; margin: 0.4rem 0; border-radius: 6px; white-space: pre-wrap; word-break: break-word; }
+  .ok { background: #e3f7e6; border: 1px solid #a8dab5; }
+  .fail { background: #fdeaea; border: 1px solid #f2b8b8; }
+  .info { background: #eef2f9; border: 1px solid #c6d3e8; }
+  button { font-size: 1rem; padding: 0.6rem 1.2rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+<h1>Diagnóstico do site Angelica</h1>
+<div id="output">Rodando testes...</div>
+<button onclick="location.reload()">Rodar de novo</button>
+
+<script>
+const out = document.getElementById("output");
+function log(msg, type) {
+  const div = document.createElement("div");
+  div.className = "line " + (type || "info");
+  div.textContent = msg;
+  out.appendChild(div);
+}
+
+async function run() {
+  out.innerHTML = "";
+  log("Iniciando testes...", "info");
+
+  // 1. Testar localStorage
+  try {
+    localStorage.setItem("teste_diagnostico", "123");
+    const lido = localStorage.getItem("teste_diagnostico");
+    localStorage.removeItem("teste_diagnostico");
+    if (lido === "123") log("✅ localStorage: funcionando normalmente", "ok");
+    else log("❌ localStorage: escreveu mas leu valor diferente (" + lido + ")", "fail");
+  } catch (err) {
+    log("❌ localStorage: BLOQUEADO pelo navegador — " + err.message, "fail");
+  }
+
+  // 2. Testar login
+  let token = null;
+  try {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pin: "0000" }),
+    });
+    const data = await res.json();
+    if (res.ok && data.token) {
+      token = data.token;
+      log("✅ Login: sucesso, token recebido (" + token.slice(0, 15) + "...)", "ok");
+    } else {
+      log("❌ Login: falhou — HTTP " + res.status + " — " + JSON.stringify(data), "fail");
+    }
+  } catch (err) {
+    log("❌ Login: erro de rede — " + err.message, "fail");
+  }
+
+  // 3. Testar chamada autenticada (settings)
+  if (token) {
+    try {
+      const res = await fetch("/api/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + token },
+        body: JSON.stringify({ whatsapp: "11994598354" }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        log("✅ Salvar configurações: sucesso — " + JSON.stringify(data), "ok");
+      } else {
+        log("❌ Salvar configurações: falhou — HTTP " + res.status + " — " + JSON.stringify(data), "fail");
+      }
+    } catch (err) {
+      log("❌ Salvar configurações: erro de rede — " + err.message, "fail");
+    }
+  } else {
+    log("⏭️ Pulando teste de configurações (login falhou antes)", "info");
+  }
+
+  // 4. Informações do navegador
+  log("Navegador: " + navigator.userAgent, "info");
+  log("Cookies habilitados: " + navigator.cookieEnabled, "info");
+  log("URL desta página: " + window.location.href, "info");
+
+  log("Testes concluídos. Tire um print desta tela inteira.", "info");
+}
+
+run();
+</script>
+</body>
+</html>
